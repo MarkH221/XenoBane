@@ -1,0 +1,8 @@
+﻿<Window x:Class="XCOMSE.MessageControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MessageControl" Height="100" Width="300" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="NoResize" IsHitTestVisible="False">
+    <Grid>
+
+    </Grid>
+</Window>

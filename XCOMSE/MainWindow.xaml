@@ -1,0 +1,925 @@
+﻿<Window x:Class="XCOMSE.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:XCOMSE.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="XenoBane - XCOM Save Editor: Enemy Within Edition V0.2"
+        Width="680"
+        Height="500"
+        Background="Black"
+        Icon="Muton.ico"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <BitmapImage x:Key="BG"
+                     CacheOption="OnLoad"
+                     CreateOptions="IgnoreImageCache"
+                     UriSource="Resources\Images\BG\logoewsize.gif" />
+        <Storyboard x:Key="PulseMesh"
+                    AutoReverse="True"
+                    RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MeshBg" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.334" Value="0.45" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.666" Value="0.4" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.35" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.334" Value="0.3" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.666" Value="0.25" />
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.2" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource PulseMesh}" />
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid x:Name="MasterGrid">
+        <Image x:Name="LogoBg"
+               Margin="20,91.858,20,43.532"
+               Opacity="0.5"
+               gif:ImageBehavior.AnimateInDesignMode="False"
+               gif:ImageBehavior.AnimatedSource="{DynamicResource BG}"
+               gif:ImageBehavior.AutoStart="True"
+               gif:ImageBehavior.RepeatBehavior="0x" d:IsLocked="True" />
+        <Image x:Name="MeshBg"
+               Opacity="0.5"
+               Source="Resources\Images\BG\mesh.jpg"
+               Stretch="Fill"
+               d:IsLocked="True" />
+        <TabControl x:Name="MasterTabControl"
+                    Margin="11,42,10,42"
+                    Background="{x:Null}"
+                    BorderBrush="LightBlue">
+            <TabItem x:Name="General" Header="General">
+                <Grid Margin="0,0,1,0">
+                    <TextBox Margin="10"
+                             Background="{x:Null}"
+                             BorderBrush="{x:Null}"
+                             Foreground="White"
+                             IsReadOnly="True"
+                             IsReadOnlyCaretVisible="True"
+                             IsUndoEnabled="False"
+                             Text="Fully Working: &#xA;Storage&#xA; SoldierReadOnly: &#xA;EXALT &#xA;Soldiers &#xA;Currencies &#xA;Staff "
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="CouncilTab" Header="Council" HorizontalAlignment="Left" Width="57">
+                <Grid x:Name="MasterCouncil">
+                    <Grid x:Name="PanicGrid"
+                          Height="185"
+                          Margin="0,101,0,0"
+                          VerticalAlignment="Top">
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type CheckBox}">
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                            <Style TargetType="{x:Type controls:PanicProgressBar}">
+                                <Setter Property="Foreground" Value="Blue" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Margin" Value="0,2" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="177*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="177*" />
+                        </Grid.ColumnDefinitions>
+                        <controls:PanicProgressBar x:Name="Russiapanicbar"
+                                                   Grid.Row="1"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <CheckBox x:Name="RUCheck"
+                                  Grid.Row="1"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Russia" />
+                        <controls:PanicProgressBar x:Name="Mexicopanicbar"
+                                                   Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Height="19"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FlowLeft="True" />
+                        <CheckBox x:Name="MECheck"
+                                  Grid.Row="2"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Mexico"
+                                  FlowDirection="RightToLeft" />
+                        <CheckBox x:Name="FRCheck"
+                                  Grid.Row="2"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="France" />
+                        <controls:PanicProgressBar x:Name="Francepanicbar"
+                                                   Grid.Row="2"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <controls:PanicProgressBar x:Name="AUPanic"
+                                                   Grid.Row="7"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <CheckBox x:Name="ARCheck"
+                                  Grid.Row="3"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Argentina"
+                                  FlowDirection="RightToLeft" />
+                        <CheckBox x:Name="GECheck"
+                                  Grid.Row="3"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Gemany" />
+                        <controls:PanicProgressBar x:Name="Argentinapanicbar"
+                                                   Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   Height="19"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FlowLeft="True" />
+                        <controls:PanicProgressBar x:Name="Southafricapanicbar"
+                                                   Grid.Row="7"
+                                                   Grid.Column="0"
+                                                   Height="19"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   VerticalContentAlignment="Center"
+                                                   FlowLeft="True" />
+                        <CheckBox x:Name="BRCheck"
+                                  Grid.Row="4"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Brazil"
+                                  FlowDirection="RightToLeft" />
+                        <CheckBox x:Name="CHCheck"
+                                  Grid.Row="4"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="China" />
+                        <controls:PanicProgressBar x:Name="Egyptpanicbar"
+                                                   Grid.Row="5"
+                                                   Grid.Column="0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalContentAlignment="Left"
+                                                   FlowLeft="True" />
+                        <controls:PanicProgressBar x:Name="Nigeriapanicbar"
+                                                   Grid.Row="6"
+                                                   Grid.Column="0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalContentAlignment="Left"
+                                                   VerticalContentAlignment="Center"
+                                                   FlowLeft="True" />
+                        <CheckBox x:Name="EGCheck"
+                                  Grid.Row="5"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Egypt"
+                                  FlowDirection="RightToLeft" />
+                        <CheckBox x:Name="JACheck"
+                                  Grid.Row="5"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Japan" />
+                        <controls:PanicProgressBar x:Name="JAPanic"
+                                                   Grid.Row="5"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <controls:PanicProgressBar x:Name="INPanic"
+                                                   Grid.Row="6"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <CheckBox x:Name="SACheck"
+                                  Grid.Row="7"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="South Africa"
+                                  FlowDirection="RightToLeft" />
+                        <CheckBox x:Name="INCheck"
+                                  Grid.Row="6"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="India" />
+                        <controls:PanicProgressBar x:Name="CHPanic"
+                                                   Grid.Row="4"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <controls:PanicProgressBar x:Name="Brazilpanicbar"
+                                                   Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   Height="19"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FlowLeft="True" />
+                        <CheckBox x:Name="NICheck"
+                                  Grid.Row="6"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Nigeria"
+                                  FlowDirection="RightToLeft" />
+                        <CheckBox x:Name="AUCheck"
+                                  Grid.Row="7"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Australia" />
+                        <controls:PanicProgressBar x:Name="Germanypanicbar"
+                                                   Grid.Row="3"
+                                                   Grid.Column="3"
+                                                   Height="19"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                        <controls:PanicProgressBar x:Name="Canadapanicbar"
+                                                   Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalContentAlignment="Left"
+                                                   FlowLeft="True" />
+                        <CheckBox x:Name="USCheck"
+                                  Grid.Row="0"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  Content="United States"
+                                  FlowDirection="RightToLeft"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <controls:PanicProgressBar x:Name="Uspanicbar"
+                                                   Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Height="20"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FlowLeft="True" />
+                        <CheckBox x:Name="CACheck"
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  Margin="0,0,2,0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="Canada"
+                                  FlowDirection="RightToLeft" />
+                        <controls:PanicProgressBar x:Name="Ukpanicbar"
+                                                   Grid.Row="0"
+                                                   Grid.Column="3"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   VerticalContentAlignment="Center" />
+                        <CheckBox x:Name="UKCheck"
+                                  Grid.Row="0"
+                                  Grid.Column="2"
+                                  Margin="2,0,0,0"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="United Kingdom" />
+                    </Grid>
+                    <Label x:Name="Exaltcountrylabel"
+                           Width="261"
+                           Height="26"
+                           Margin="10,0,0,10"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Content="EXALT Location: "
+                           Foreground="White" />
+                    <Slider x:Name="PanicSlider"
+                            Height="30"
+                            Margin="163,29,159,0"
+                            VerticalAlignment="Top"
+                            Focusable="False"
+                            Interval="20"
+                            IsMoveToPointEnabled="True"
+                            IsSelectionRangeEnabled="True"
+                            IsSnapToTickEnabled="True"
+                            Maximum="5"
+                            SmallChange="1"
+                            TickPlacement="BottomRight"
+                            ValueChanged="UpdateAllPanicBars" />
+                    <Label x:Name="allpaniclabel"
+                           Height="26"
+                           Margin="163,0,159,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center"
+                           Content="Set Panic For All"
+                           Foreground="White" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="CurrencyTab" Header="Currency">
+                <Grid Height="417" VerticalAlignment="Top">
+                    <WrapPanel x:Name="StaffPanel"
+                               Margin="47,145,-122,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Orientation="Vertical">
+                        <Label VerticalAlignment="Top"
+                               HorizontalContentAlignment="Center"
+                               Content="Staff" />
+                        <controls:InvItemBar x:Name="EngineerBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Engineer" />
+                        <controls:InvItemBar x:Name="ScientistBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Scientist" />
+                    </WrapPanel>
+                    <WrapPanel x:Name="CurrencyPanel"
+                               Margin="54,10,-122,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Orientation="Vertical">
+                        <Label VerticalAlignment="Top"
+                               HorizontalContentAlignment="Center"
+                               Content="Expendable Resources" />
+                        <controls:InvItemBar x:Name="CashBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Cash" />
+                        <controls:InvItemBar x:Name="AlloyBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Alloy" />
+                        <controls:InvItemBar x:Name="EleriumBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Elerium" />
+                        <controls:InvItemBar x:Name="MeldBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Meld" />
+                    </WrapPanel>
+                    <WrapPanel x:Name="MedalPanel"
+                               Margin="0,10,35,0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Orientation="Vertical">
+                        <Label VerticalAlignment="Top"
+                               HorizontalContentAlignment="Center"
+                               Content="Medals" />
+                        <controls:InvItemBar x:Name="UrbanCombatBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="UrbanCombat" />
+                        <controls:InvItemBar x:Name="DefenderBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Defender" />
+                        <controls:InvItemBar x:Name="IntserviceBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="International Service" />
+                        <controls:InvItemBar x:Name="CouncilHonorBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Council Honor" />
+                        <controls:InvItemBar x:Name="StarterraBar"
+                                             VerticalAlignment="Top"
+                                             ButtonText="Lots"
+                                             ItemName="Star of Terra" />
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="InventoryTab" Header="Storage">
+                <ScrollViewer HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Stretch"
+                              PanningMode="VerticalOnly">
+                    <Grid x:Name="InvGrid" Width="613">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="SoldierTab" Header="Soldiers">
+                <Grid x:Name="MasterSoldierGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34*" />
+                        <RowDefinition Height="307*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel x:Name="SoldierNav"
+                               Grid.Row="1"
+                               Width="75"
+                               Margin="5,4,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Orientation="Vertical">
+                        <Button x:Name="SolGeneralButton"
+                                Width="75"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="SolShow"
+                                Content="Stats"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <Button x:Name="AbilityButton"
+                                Width="75"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="SolShow"
+                                Content="Perks"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <Button x:Name="PsiAbilityButton"
+                                Width="75"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="SolShow"
+                                Content="Psi-Abilities"
+                                IsEnabled="False"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <Button x:Name="GeneButton"
+                                Width="75"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Content="Gene Mods"
+                                IsEnabled="False"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <Button x:Name="LoadoutButton"
+                                Width="75"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="SolShow"
+                                Content="Loadout"
+                                IsEnabled="False"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <Button x:Name="CustomiseButton"
+                                Width="75"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="SolShow"
+                                Content="Customise"
+                                IsEnabled="False"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                    </WrapPanel>
+                    <StackPanel x:Name="SoldierStack"
+                                Grid.Column="1"
+                                Width="280"
+                                Margin="0,4,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Orientation="Horizontal">
+                        <Label Margin="0,1,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Content="Soldier:"
+                               Foreground="White" />
+                        <ComboBox x:Name="soldierlist"
+                                  Width="231"
+                                  Height="24"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Focusable="True"
+                                  SelectionChanged="Soldiershift" />
+                    </StackPanel>
+                    <Grid x:Name="Soldierpanel"
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          Margin="5,4,0,0">
+                        <Grid x:Name="SoldierGeneral" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <Label Width="41"
+                                   Margin="0,-1,237,0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top"
+                                   HorizontalContentAlignment="Right"
+                                   Content="Kills:" />
+                            <StackPanel x:Name="SolStatusStack"
+                                        Width="280"
+                                        Margin="0,-2,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal">
+                                <Label Margin="0,1,0,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       Content="Status:"
+                                       Foreground="White"
+                                       Padding="5" />
+                                <ComboBox x:Name="SolStatus"
+                                          Width="231"
+                                          Height="24"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Focusable="True"
+                                          SelectionChanged="Soldiershift" />
+                            </StackPanel>
+                            <Grid x:Name="RankGrid"
+                                  Width="203"
+                                  Height="61"
+                                  Margin="10,25,0,0"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top">
+                                <StackPanel x:Name="RankPanel"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <Image Width="32"
+                                           Height="32"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top" />
+                                    <Label HorizontalAlignment="Right"
+                                           HorizontalContentAlignment="Right"
+                                           VerticalContentAlignment="Bottom"
+                                           Content="Rank:" />
+                                    <ComboBox x:Name="ranklist"
+                                              Width="90"
+                                              Height="24"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Bottom"
+                                              Focusable="True">
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Rookie" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Squaddie" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Corporal" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Sergeant" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Lieutenant" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Captain" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Major" />
+                                        <ComboBoxItem Width="88"
+                                                      HorizontalAlignment="Left"
+                                                      Content="Colonel" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel x:Name="XPStack"
+                                            Width="117"
+                                            Margin="0,31,42,0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           HorizontalContentAlignment="Right"
+                                           Content="XP:" />
+                                    <xctk:IntegerUpDown x:Name="xpbox"
+                                                        Width="89"
+                                                        Height="24"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Maximum="4"
+                                                        Minimum="0" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid x:Name="StatGrid"
+                                  Height="75"
+                                  Margin="10,86,0,150"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel x:Name="aimstack"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalContentAlignment="Right"
+                                           VerticalContentAlignment="Bottom"
+                                           Content="Aim" />
+                                    <xctk:IntegerUpDown x:Name="aimbox"
+                                                        Width="60"
+                                                        Margin="0,13,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Minimum="0" />
+                                </StackPanel>
+                                <StackPanel x:Name="Defensestack"
+                                            Grid.Row="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalContentAlignment="Right"
+                                           VerticalContentAlignment="Bottom"
+                                           Content="Defense" />
+                                    <xctk:IntegerUpDown x:Name="defensebox"
+                                                        Width="60"
+                                                        Margin="0,13,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Minimum="0" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalContentAlignment="Right"
+                                           VerticalContentAlignment="Bottom"
+                                           Content="HP" />
+                                    <xctk:IntegerUpDown x:Name="Hpbox"
+                                                        Width="60"
+                                                        Margin="0,13,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Minimum="0" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="1"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalContentAlignment="Right"
+                                           VerticalContentAlignment="Bottom"
+                                           Content="Will" />
+                                    <xctk:IntegerUpDown x:Name="Willbox"
+                                                        Width="60"
+                                                        Margin="0,13,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Minimum="0" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid x:Name="PsiGrid"
+                                  Width="108"
+                                  Height="76"
+                                  Margin="218,35,0,0"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top">
+                                <StackPanel x:Name="PsiRank"
+                                            Margin="0,26,-2,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           HorizontalContentAlignment="Right"
+                                           Content="PsiRank:" />
+                                    <xctk:IntegerUpDown x:Name="Psirankbox"
+                                                        Width="55"
+                                                        Height="24"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Maximum="4"
+                                                        Minimum="0" />
+                                </StackPanel>
+                                <CheckBox x:Name="Psitestcheck"
+                                          Margin="0,57,0,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Content="Tested"
+                                          ForceCursor="True"
+                                          Foreground="White" />
+                                <CheckBox x:Name="Psigiftcheck"
+                                          Margin="57,57,0,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Content="Gifted"
+                                          ForceCursor="True"
+                                          Foreground="White" />
+                                <StackPanel x:Name="Psixpstack"
+                                            Margin="12,0,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Right"
+                                           HorizontalContentAlignment="Right"
+                                           Content="PsiXP:" />
+                                    <xctk:IntegerUpDown x:Name="psixpbox"
+                                                        Width="55"
+                                                        Height="24"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Maximum="4"
+                                                        Minimum="0" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                        <Grid x:Name="PerkGrid" Visibility="Hidden">
+                            <ListBox x:Name="SolPerks"
+                                     Width="210"
+                                     Margin="10,30,0,10"
+                                     HorizontalAlignment="Left"
+                                     Background="{x:Null}"
+                                     Foreground="White"
+                                     SelectionMode="Multiple" />
+                            <ListBox x:Name="PerksList"
+                                     Width="210"
+                                     Margin="0,30,10,10"
+                                     HorizontalAlignment="Right"
+                                     Background="{x:Null}"
+                                     Foreground="White"
+                                     SelectionMode="Multiple" />
+                            <Label Margin="70,6,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top"
+                                   Content="Current Perks" />
+                            <Label Width="98"
+                                   Margin="0,6,65,0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top"
+                                   Content="Possible Perks" />
+                            <Button x:Name="AddPerkBtn"
+                                    Width="75"
+                                    Margin="0,65,248,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="AddPerk"
+                                    Content="&lt;&lt;" />
+                            <Button x:Name="RemovePerkBtn"
+                                    Width="75"
+                                    Margin="0,118,248,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="RemovePerk"
+                                    Content="&gt;&gt;" />
+                        </Grid>
+                    </Grid>
+                    <StackPanel x:Name="SolClassStack"
+                                Grid.Column="1"
+                                Width="280"
+                                Margin="0,4,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Orientation="Horizontal">
+                        <Label x:Name="SolClassLabel"
+                               Margin="0,1,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Content="Class:"
+                               Foreground="White"
+                               Padding="10,5,5,5" />
+                        <ComboBox x:Name="SolClass"
+                                  Width="231"
+                                  Height="24"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Focusable="True"
+                                  SelectionChanged="Soldiershift" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Armoury"
+                     Margin="-2,0,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Header="Armoury"
+                     Visibility="Hidden" />
+            <TabItem x:Name="Base"
+                     Margin="-2,0,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Header="Base"
+                     IsEnabled="False"
+                     Visibility="Hidden">
+                <Grid x:Name="BaseGrid"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Background="Black"
+                      IsEnabled="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="AboutButton"
+                Width="67"
+                Height="27"
+                Margin="0,10,20,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="AboutShow"
+                Content="About" />
+        <Label x:Name="status"
+               Height="31"
+               Margin="10,0,10,5"
+               VerticalAlignment="Bottom"
+               Content="Status:" />
+        <DockPanel LastChildFill="False">
+            <StackPanel x:Name="IOStack"
+                        Height="27.022"
+                        Margin="10,10,10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <Button x:Name="OpenButton"
+                        Width="50"
+                        Click="Open"
+                        Content="Open" />
+                <Button x:Name="SaveButton"
+                        Width="50"
+                        Margin="5,0,0,0"
+                        Click="Save"
+                        Content="Save" />
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Debug:" />
+                    <Button x:Name="OutputExtract"
+                            Width="50"
+                            Margin="0,0,2.5,0"
+                            Click="Output"
+                            Content="Output"
+                            Padding="1" />
+                    <Button x:Name="InputExtract"
+                            Width="50"
+                            Margin="2.5,0,0,0"
+                            Click="Input"
+                            Content="Input"
+                            Padding="1" />
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

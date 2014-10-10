@@ -1,0 +1,17 @@
+XenoBane
+===============
+
+XCOM Enemy Unknown/Within Save Editor - WPF Edition
+Using the .Net 4.5 framework with primary support for the xbox360 version game-saves.
+
+## Acknowledgements
+
+Thanks to 360Haven members for the following:
+Fairchild			- Compression Toolkit
+idlehands88 		- Previous Editor
+Jappi88 & Pureiso	- Isolib.dll
+69bigplayer69		- Enemy Within Research
+
+Thanks to users of Codeplex for the following:
+Xceed				- Extended WPF Toolkit
+tom103				- WPF Animated GIF

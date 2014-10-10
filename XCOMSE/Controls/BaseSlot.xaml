@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="XCOMSE.Controls.BaseSlot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="32"
+             d:DesignWidth="64              "
+             mc:Ignorable="d">
+    <Grid>
+        <Image x:Name="BG"
+               Width="64"
+               Height="32"
+               Source="/XCOMSE;component/Resources/Images/Base/FacilityCard_Empty.png"
+               Stretch="Fill" />
+        <Image x:Name="FG"
+               Width="64"
+               Height="32"
+               Source="/XCOMSE;component/Resources/Images/Base/Facility_Steam.png"
+               Stretch="Fill" />
+        <Image x:Name="Comb"
+               Height="8"
+               Margin="-9,12,57,0"
+               VerticalAlignment="Top"
+               Source="/XCOMSE;component/Resources/Images/Base/Facility_Combo.png" />
+        <Label x:Name="Descrip"
+               Width="64"
+               Height="32"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Bottom"
+               Content="Empty"
+               FontSize="6"
+               FontStretch="Expanded"
+               Padding="5,5,5,2" />
+    </Grid>
+</UserControl>

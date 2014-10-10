@@ -1,0 +1,94 @@
+﻿<Window x:Class="XenoBane.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Height="364"
+        AllowsTransparency="True"
+        Background="{x:Null}"
+        Focusable="False"
+        Foreground="White"
+        IsTabStop="False"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        mc:Ignorable="d">
+
+    <Grid Width="564">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Image Width="137"
+               Height="133"
+               Margin="10,0,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Source="Muton.ico"
+               Stretch="UniformToFill" />
+        <RichTextBox x:Name="info"
+                     Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Width="402"
+                     Margin="152,10,0,10"
+                     HorizontalAlignment="Left"
+                     AcceptsTab="True"
+                     AllowDrop="True"
+                     Background="Black"
+                     Block.LineHeight="14"
+                     Block.LineStackingStrategy="BlockLineHeight"
+                     Foreground="White"
+                     IsReadOnly="True"
+                     SpellCheck.IsEnabled="True"
+                     VerticalScrollBarVisibility="Auto">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Language="en-gb" Text="XenoBane  - XCOM Save Editor"/>
+                </Paragraph>
+
+                <Paragraph>
+                    <Run Language="en-gb" Text="Acknowledgements:"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="Idlehands88     &#x9;: Previous Editor"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="Fairchild           &#x9;: Compression Toolkit (Xbox/PC/iOS)"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="69bigplayer69  &#x9;: EW Research (Saved me loads of time)"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="Jappi88&#x9;&#x9;: PS3 Library &amp; various samples."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="CodePlex: Extended WPF Toolkit™ : IntegerUpDown control."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="CodePlex: WPF Animated GIF: Animated GIF support library."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="Kelnor277&#x9;: XCOM Soldier Viewer Deserialiser Code"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="Disclaimer:"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Language="en-gb" Text="All copyrighted content is property of it's respective owner. Intended software use is for the modification of user-made game-saves and nothing else."/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button Grid.Row="1"
+                Width="137"
+                Margin="10,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="ButtonClick"
+                Content="OK"
+                RenderTransformOrigin="0.5,0.5" />
+
+    </Grid>
+</Window>
